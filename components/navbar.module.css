@@ -1,0 +1,25 @@
+.navbar {
+    background-color: #6a1b9a;
+  }
+  
+.links {
+    float: left;
+  }
+  
+  .links a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+ 
+  .links a:hover {
+    background-color: #4a148c;
+  } 
+
+  .links a:active {
+      background-color: #fff;
+  }
+  
