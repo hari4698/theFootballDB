@@ -7,7 +7,17 @@ handler.use(middleware);
 
 handler.get(async (req, res) => {
 
-  let doc = await req.db.collection('leagues').findOne()
+  const { name } = req.query;
+
+  let doc = {}
+
+  if (name) {
+    doc = await req.db.collection('leagues').findOne({ name })
+  }
+  else {
+    doc = await req.db.collection('leagues').findOne()
+  }
+
   console.log(doc);
   res.json(doc);
 });
