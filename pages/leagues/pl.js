@@ -43,11 +43,6 @@ const PL = ({ data }) => {
                     </tr>
                 </tbody>
             </Table>
-            <h2 className="backHome">
-                <Link href="/">
-                    <a>Back to the Home page</a>
-                </Link>
-            </h2>
         </Layout>
     )
 }
