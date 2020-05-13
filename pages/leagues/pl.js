@@ -8,9 +8,6 @@ import { Table } from 'react-bootstrap'
 const leagueName = "Premier League";
 
 const PL = ({ data }) => {
-
-    const result = useState(data);
-
     return (
         <Layout>
             <Head>

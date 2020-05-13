@@ -8,9 +8,6 @@ import { useState } from 'react'
 const playerName = "Mesut Özil";
 
 const Ozil = ({ data }) => {
-
-    const result = useState(data);
-
     return (
         <Layout>
             <Head>

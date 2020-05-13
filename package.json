@@ -17,6 +17,7 @@
     "mongoose": "^5.9.13",
     "next": "9.3.6",
     "next-connect": "^0.6.6",
+    "now-client": "^8.0.1",
     "react": "16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "16.13.1"

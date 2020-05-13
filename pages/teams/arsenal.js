@@ -2,22 +2,50 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Layout from '../../components/layout'
 import Image from 'react-bootstrap/Image'
+import { Table } from 'react-bootstrap'
 
-export default function Arsenal() {
+const teamName = 'Arsenal Football Club';
+
+const Arsenal = ({data}) => {
     return (
         <Layout>
             <Head>
-                <title>Arsenal FC</title>
+                <title>{teamName}</title>
             </Head>
-            <h1>Arsenal Football Club</h1>
+            <h1>{teamName}</h1>
             <div className="imgContainer">
                 <Image src="/images/Arsenal.png" alt="Arsenal Logo" fluid />
             </div>
-            {/* <h2 className="backHome">
-                <Link href="/">
-                    <a>Back to the Home page</a>
-                </Link>
-            </h2> */}
+            <Table hover bordered striped variant="dark">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Stadium</th>
+                        <th>Matches played</th>
+                        <th>Goals</th>
+                        <th>Goals Conceded</th>
+                        <th>Clean Sheets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{data.name}</td>
+                        <td>{data.Stadium}</td>
+                        <td>{data.MatchesPlayed}</td>
+                        <td>{data.Goals}</td>
+                        <td>{data.GoalsConceded}</td>
+                        <td>{data.CleanSheets}</td>
+                    </tr>
+                </tbody>
+            </Table>
         </Layout>
     )
 }
+
+Arsenal.getInitialProps = async () => {
+    const res = await fetch('http://localhost:3000/api/teamData?name=' + teamName);
+    const json = await res.json();
+    return { data: json }
+}
+
+export default Arsenal;

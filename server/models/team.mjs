@@ -10,32 +10,32 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-const leagueSchema = mongoose.Schema({
+const teamSchema = mongoose.Schema({
     name: String,
-    aliasName: [String],
-    abbreviation: String,
-    firstSeason: Date,
-    players: Number,
-    foreignPlayers: Number,
-    marketValue: Number,
-    UEFACoeff: Number
+    Stadium: String,
+    MatchesPlayed: Number,
+    Wins: Number,
+    Losses: Number,
+    Goals: Number,
+    GoalsConceded: Number,
+    CleanSheets: Number
 })
 
 // export default mongoose.model('League', leagueSchema)
-var LeagueModel = mongoose.model('League',leagueSchema);
+var TeamModel = mongoose.model('Team', teamSchema);
 
-let epl = new LeagueModel({
-    name: 'Premier League',
-    aliasName: ['EPL', 'BPL', 'English Premier League'],
-    abbreviation: 'PL',
-    firstSeason: "1992-08-15",
-    players: 514,
-    foreignPlayers: 332,
-    marketValue: 8660000000,
-    UEFACoeff: 88.176
+let arsenal = new TeamModel({
+    name: 'Arsenal Football Club',
+    Stadium: 'Emirates Stadium',
+    MatchesPlayed: 1066,
+    Wins: 574,
+    Losses: 219,
+    Goals: 1885,
+    GoalsConceded: 1049,
+    CleanSheets: 408
 });
 
-epl.save()
+arsenal.save()
     .then(doc => {
         console.log(doc)
     })
