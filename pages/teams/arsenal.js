@@ -3,10 +3,11 @@ import Head from 'next/head'
 import Layout from '../../components/layout'
 import Image from 'react-bootstrap/Image'
 import { Table } from 'react-bootstrap'
+import fetch from 'isomorphic-unfetch'
 
 const teamName = 'Arsenal Football Club';
 
-const Arsenal = ({data}) => {
+const Arsenal = ({ data }) => {
     return (
         <Layout>
             <Head>
@@ -42,10 +43,10 @@ const Arsenal = ({data}) => {
     )
 }
 
-Arsenal.getInitialProps = async () => {
+export async function getStaticProps() {
     const res = await fetch('http://localhost:3000/api/teamData?name=' + teamName);
-    const json = await res.json();
-    return { data: json }
+    const data = await res.json();
+    return { props: { data } }
 }
 
 export default Arsenal;

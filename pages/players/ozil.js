@@ -3,11 +3,14 @@ import Head from 'next/head'
 import Layout from '../../components/layout'
 import Image from 'react-bootstrap/Image'
 import { Table } from 'react-bootstrap'
-import { useState } from 'react'
+import fetch from 'isomorphic-unfetch'
 
 const playerName = "Mesut Özil";
 
-const Ozil = ({ data }) => {
+function Ozil({ data }) {
+
+    const pageName = data.key
+    console.log(pageName);
     return (
         <Layout>
             <Head>
@@ -19,6 +22,7 @@ const Ozil = ({ data }) => {
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Club</th>
                         <th>Nationality</th>
                         <th>Date of birth</th>
                         <th>Appearances</th>
@@ -29,6 +33,9 @@ const Ozil = ({ data }) => {
                 <tbody>
                     <tr>
                         <td>{data.name}</td>
+                        <td>
+                            <Link href={'/teams/' + pageName}>{data.Team}</Link>
+                        </td>
                         <td>{data.Nationality}</td>
                         <td>{data.DOB}</td>
                         <td>{data.Appearances}</td>
@@ -41,10 +48,10 @@ const Ozil = ({ data }) => {
     )
 }
 
-Ozil.getInitialProps = async () => {
+export async function getStaticProps() {
     const res = await fetch('http://localhost:3000/api/playerData?name=' + playerName);
-    const json = await res.json();
-    return { data: json }
+    const data = await res.json();
+    return { props: { data } }
 }
 
 export default Ozil;

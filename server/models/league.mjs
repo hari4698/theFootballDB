@@ -11,6 +11,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const leagueSchema = mongoose.Schema({
+    key: String,
     name: String,
     aliasName: [String],
     abbreviation: String,
@@ -25,6 +26,7 @@ const leagueSchema = mongoose.Schema({
 var LeagueModel = mongoose.model('League',leagueSchema);
 
 let epl = new LeagueModel({
+    key:'pl',
     name: 'Premier League',
     aliasName: ['EPL', 'BPL', 'English Premier League'],
     abbreviation: 'PL',
@@ -35,7 +37,27 @@ let epl = new LeagueModel({
     UEFACoeff: 88.176
 });
 
+let laliga = new LeagueModel({
+    key: 'laliga',
+    name: 'LA Liga',
+    aliasName: ['LALIGA', 'liga',],
+    abbreviation: 'LALIGA',
+    firstSeason: "1929-06-15",
+    players: 486,
+    foreignPlayers: 192,
+    marketValue: 8660000000,
+    UEFACoeff: 99.426
+});
+
 epl.save()
+    .then(doc => {
+        console.log(doc)
+    })
+    .catch(err => {
+        console.error(err)
+    })
+
+laliga.save()
     .then(doc => {
         console.log(doc)
     })
